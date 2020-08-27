@@ -1,5 +1,3 @@
-// declare var require: any
-
 const express = require('express')
 const app = express()
 const bodyParser = require ('body-parser')
@@ -38,7 +36,7 @@ app.get('/api/v1/tasks/:username/all', (req, res) => {
 
     if (allTasks[username]) {
         let tasks = allTasks[username].tasks
-        res.send(tasks)
+        res.send({todos: tasks})
     } else {
         // 204 not found
         res.sendStatus(204)
@@ -84,9 +82,6 @@ app.delete('/api/v1/tasks/:username/:id', (req, res) => {
     res.sendStatus(204)
 })
 
-app.get('/api/create', (req, res) => {
-
-})
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
